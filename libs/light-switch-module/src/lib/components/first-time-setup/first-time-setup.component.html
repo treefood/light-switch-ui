@@ -1,0 +1,166 @@
+<mat-card>
+  <mat-card-title>First Time Setup</mat-card-title>
+  <mat-card-content>
+    Let's run through the setup process
+    <mat-horizontal-stepper [linear]="true" #stepper>
+      <mat-step [completed]="selectedBridge ? true : false">
+        <ng-template matStepLabel>Select your Phillips Hue Bridge</ng-template>
+        <h4>Select your Phillips Hue Bridge</h4>
+        <div stepperContent>
+          <div *ngIf="!discoveredBridges">
+            Scanning For Bridges...
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngIf="discoveredBridges">
+            <div *ngIf="discoveredBridges.length < 1">
+              We couldn't find any bridges! Be sure that the bridge is working
+              by checking the Hue App on your phone.
+            </div>
+            <div *ngIf="discoveredBridges.length === 1">
+              Bridge Found! We're ready to move on. Go ahead and click next.
+            </div>
+            <div>
+              Hue Bridge internal IP Address:
+              <span emphasis-text>{{ selectedBridge.internalipaddress }}</span>
+            </div>
+            <div>
+              Bridge Name: <span emphasis-text>{{ bridgeName }}</span>
+            </div>
+            <div *ngIf="discoveredBridges.length > 1">
+              Select the bridge that you would like to connect to
+            </div>
+          </div>
+        </div>
+        <div class="stepper-buttons">
+          <button mat-stroked-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Begin Application Authentication</ng-template>
+        <div stepperContent>
+          <h4>Begin Application Authentication</h4>
+          <p>
+            Press the button on the Hue Bridge to begin the authentication
+            process.
+          </p>
+          <div class="press-bridge-icons">
+            <fa-icon [icon]="handIcon"></fa-icon>
+            <mat-icon
+              svgIcon="hue_bridge"
+              class="hue-bridge-icon"
+              [inline]="true"
+              >hue_bridge</mat-icon
+            >
+          </div>
+          <p>
+            After the Hue Bridge button has been pressed, press 'Next'
+          </p>
+        </div>
+        <div class="stepper-buttons">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button
+            mat-stroked-button
+            matStepperNext
+            (click)="verifyAuthentication()"
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+      <mat-step [completed]="authenticated === true">
+        <ng-template matStepLabel>Authorize Application</ng-template>
+        <h4>Authorize Application</h4>
+        <div stepperContent>
+          <div class="loading" *ngIf="loading === true">
+            <p>Checking to see if we're authenticated...</p>
+            <mat-spinner></mat-spinner>
+          </div>
+          <div class="auth-results" *ngIf="loading === false">
+            <div class="auth-fail" *ngIf="authenticated === false">
+              <p>
+                Looks like the authentication process failed. Go back and try
+                again.
+              </p>
+              <div *ngIf="errorMessage">
+                <div>
+                  Error type:
+                  <span>
+                    {{ errorMessage.type }}
+                  </span>
+                </div>
+                <div>
+                  Error Description:
+                  <span emphasis-text>{{ errorMessage.description }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="auth-success" *ngIf="authenticated === true">
+              <p>
+                Authentication suceeded!
+              </p>
+              <div>
+                Obtained Token: <span emphasis-text>{{ token }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stepper-buttons">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button
+            mat-stroked-button
+            matStepperNext
+            (click)="getGroups()"
+            *ngIf="authenticated === true"
+          >
+            Next
+          </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Select the main room</ng-template>
+        <h4>Select the main room</h4>
+        <p>Which room will this switch be located in?</p>
+        <mat-form-field>
+          <mat-select [(ngModel)]="selectedGroup">
+            <mat-option *ngFor="let group of groups" [value]="group">
+              {{ group }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="stepper-buttons">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-stroked-button matStepperNext *ngIf="selectedGroup">
+            Next
+          </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Review</ng-template>
+        <h4>Review</h4>
+        <div stepperContent *ngIf="bridgeName && token && selectedGroup">
+          <div>
+            Connecting to bridge: <span emphasis-text>{{ bridgeName }}</span>
+          </div>
+          <div>
+            IP-Address:
+            <span emphasis-text>{{
+              this.selectedBridge.internalipaddress
+            }}</span>
+          </div>
+          <div>
+            Auth Token: <span emphasis-text>{{ this.token }}</span>
+          </div>
+          <div>
+            Light Switch Room Location:
+            <span emphasis-text>{{ this.selectedGroup }}</span>
+          </div>
+        </div>
+        <div class="stepper-buttons">
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-stroked-button (click)="save()">Save</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>

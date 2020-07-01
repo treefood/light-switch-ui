@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files */
+
+// @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Sharp|Material+Icons+Round|Material+Icons+Two+Tone');
+@import '~@angular/material/theming';
+@import '~@treefood-nx-angular/light-switch-module/src/lib/components/home/home.component.theme.scss';
+@import '~@treefood-nx-angular/light-switch-module/src/lib/components/common/light/light.component.theme.scss';
+
+$primary: #2196f3;
+$accent: #f37f21;
+$background: #121212;
+$foreground: white;
+
+@font-face {
+  font-family: roboto;
+  src: url('assets/fonts/Roboto-Regular.ttf') format('opentype');
+}
+
+@include mat-core();
+@include home-component-theme($primary, $accent, $background, $foreground);
+@include light-component-theme($primary, $accent, $background, $foreground);
+body {
+  height: calc(100vh);
+  width: calc(100vw);
+  margin: 10px;
+  font-family: roboto;
+  background-color: $background;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: transparentize($foreground, 0.13);
+  cursor: none; //remove when in dev
+}
+
+[emphasis-text] {
+  color: transparentize($color: $foreground, $amount: 0.13);
+}
+
+.hue-bridge-icon {
+  color: transparentize($color: $foreground, $amount: 0.13);
+  fill: transparentize($color: $foreground, $amount: 0.13) !important;
+}
+
+.mat-icon {
+  color: transparentize($color: $foreground, $amount: 0.13);
+  fill: transparentize($color: $foreground, $amount: 0.13);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: transparentize($color: white, $amount: 0.13);
+  font-weight: 500;
+}
+
+// .mat-form-field-appearance-legacy {
+.mat-form-field-underline {
+  background-color: transparent !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: transparentize($color: $primary, $amount: 0.46);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: $primary;
+}
+
+///////////////
+.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+  height: 12px;
+  border-radius: 10px;
+}
+.mat-slider.mat-slider-horizontal .mat-slider-track-background,
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  height: 100%;
+}
+.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
+  background-color: transparentize($color: $foreground, $amount: 0.13);
+}
+
+.mat-slider-track-background {
+  background-color: transparentize($color: $background, $amount: 0.13);
+}
+.mat-accent .mat-slider-thumb {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border: solid 2px gray;
+  bottom: -20px;
+  right: -20px;
+}
+.mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+  background-color: white;
+}
+//////////////
+
+.mat-select {
+  .mat-select-arrow {
+    color: transparentize($color: $foreground, $amount: 0.13);
+  }
+  .mat-select-value-text {
+    color: transparentize($color: $foreground, $amount: 0.13);
+    margin-left: 5px;
+  }
+}
+
+.mat-form-field {
+  .mat-form-field-infix {
+    border: 1px solid transparentize($color: $foreground, $amount: 0.13);
+  }
+}
+// }
+.mat-card {
+  background-color: mix($background, $foreground, 95%);
+  .mat-card-title {
+    color: $foreground;
+    opacity: 87%;
+  }
+  .mat-card-subtitle {
+    color: $foreground;
+    opacity: 60%;
+  }
+  .mat-card-content {
+    color: transparentize($foreground, 0.4);
+  }
+}
+
+.mat-stepper-horizontal,
+.mat-stepper-vertical {
+  background-color: mix($background, $foreground, 95%);
+}
+
+.mat-stroked-button:not([disabled]) {
+  border-color: $primary;
+  color: $primary;
+}
+
+.mat-stepper-horizontal-line {
+  border-top-color: transparentize($color: $foreground, $amount: 0.4);
+}
+
+.mat-step-header {
+  .mat-step-icon {
+    background-color: transparentize($color: $foreground, $amount: 0.4);
+    color: mix($background, $foreground, 95%);
+  }
+  .mat-step-icon-selected,
+  .mat-step-icon-state-edit {
+    background-color: $primary;
+    color: mix($background, $foreground, 95%);
+  }
+  .mat-step-label {
+    color: transparentize($color: $foreground, $amount: 0.62);
+    &.mat-step-label-active {
+      color: transparentize($foreground, 0.4);
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.material-icons {
+  font-family: 'Material Icons Round';
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 50px;
+}

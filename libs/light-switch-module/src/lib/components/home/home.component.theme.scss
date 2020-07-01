@@ -1,0 +1,33 @@
+@mixin home-component-theme($primary, $accent, $background, $foreground) {
+  .power-button-container {
+    background-color: $background;
+  }
+
+  .menu-button {
+    background-color: $background;
+    outline: none;
+    border: none;
+    color: transparentize($color: $foreground, $amount: 0.13);
+    &:active {
+      color: transparentize($color: $foreground, $amount: 0.5);
+    }
+  }
+
+  .power-button-on {
+    border-color: $primary;
+    color: $primary;
+    &:active {
+      color: transparentize($color: $primary, $amount: 0.5);
+      border-color: transparentize($color: $primary, $amount: 0.5);
+    }
+  }
+
+  .power-button-off {
+    border-color: transparentize($color: $foreground, $amount: 0.5);
+    color: transparentize($color: $foreground, $amount: 0.5);
+    &:active {
+      border-color: transparentize($color: $foreground, $amount: 0.65);
+      color: transparentize($color: $foreground, $amount: 0.65);
+    }
+  }
+}

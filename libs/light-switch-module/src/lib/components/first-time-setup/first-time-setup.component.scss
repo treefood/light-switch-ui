@@ -1,0 +1,46 @@
+[stepperContent] {
+  padding-bottom: 24px;
+}
+
+@keyframes button-press {
+  0% {
+    left: 0px;
+    opacity: 0;
+  }
+  50% {
+    left: 37px;
+    color: grey;
+    opacity: 1;
+  }
+  100% {
+    left: 0px;
+    opacity: 0;
+  }
+}
+
+.press-bridge-icons {
+  font-size: 45px;
+  display: flex;
+  align-items: center;
+  .hue-bridge-icon {
+    width: 45px;
+    height: 45px;
+    margin-left: 20px;
+  }
+  fa-icon {
+    position: relative;
+    animation-name: button-press;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+  }
+}
+
+.stepper-buttons {
+  button {
+    margin-right: 10px;
+  }
+}
+
+div {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,33 @@
+{
+  "npmScope": "treefood-nx-angular",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "light-switch-ui": {
+      "tags": []
+    },
+    "light-switch-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["light-switch-ui"]
+    },
+    "light-switch-module": {
+      "tags": []
+    }
+  }
+}

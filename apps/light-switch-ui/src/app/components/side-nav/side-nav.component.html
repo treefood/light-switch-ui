@@ -1,0 +1,29 @@
+<div class="side-nav-container">
+  <span
+    [ngClass]="[
+      'side-nav-item',
+      router.url === '/dashboard/main' ? 'current' : ''
+    ]"
+    matRipple
+    routerLink="/dashboard/main"
+  >
+    <mat-icon>home</mat-icon>
+  </span>
+  <span
+    [ngClass]="[
+      'side-nav-item',
+      router.url === '/dashboard/preferred' ? 'current' : ''
+    ]"
+    matRipple
+    routerLink="/dashboard/preferred"
+  >
+    <mat-icon>sports_esports</mat-icon>
+  </span>
+  <span
+    [ngClass]="['side-nav-item', router.url === '/settings' ? 'current' : '']"
+    matRipple
+    routerLink="/settings"
+  >
+    <mat-icon>settings</mat-icon>
+  </span>
+</div>

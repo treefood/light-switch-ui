@@ -1,0 +1,121 @@
+[
+  {
+    "Identifier": "/lpc/nct6776f/fan/2",
+    "Index": 2,
+    "InstanceId": "3905",
+    "Max": 41734,
+    "Min": 262,
+    "Name": "Fan #3",
+    "Parent": "/lpc/nct6776f",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Fan",
+    "Value": 918
+  },
+  {
+    "Identifier": "/nvidiagpu/0/clock/0",
+    "Index": 0,
+    "InstanceId": "3874",
+    "Max": 1885.5,
+    "Min": 139,
+    "Name": "GPU Core",
+    "Parent": "/nvidiagpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Clock",
+    "Value": 594.5
+  },
+  {
+    "Identifier": "/nvidiagpu/0/clock/1",
+    "Index": 1,
+    "InstanceId": "3875",
+    "Max": 5005.8,
+    "Min": 405,
+    "Name": "GPU Memory",
+    "Parent": "/nvidiagpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Clock",
+    "Value": 405
+  },
+  {
+    "Identifier": "/lpc/nct6776f/fan/1",
+    "Index": 1,
+    "InstanceId": "3904",
+    "Max": 1094,
+    "Min": 262,
+    "Name": "Fan #2",
+    "Parent": "/lpc/nct6776f",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Fan",
+    "Value": 955
+  },
+  {
+    "Identifier": "/intelcpu/0/temperature/6",
+    "Index": 6,
+    "InstanceId": "3857",
+    "Max": 69,
+    "Min": 40,
+    "Name": "CPU Package",
+    "Parent": "/intelcpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Temperature",
+    "Value": 51
+  },
+  {
+    "Identifier": "/nvidiagpu/0/temperature/0",
+    "Index": 0,
+    "InstanceId": "3873",
+    "Max": 46,
+    "Min": 0,
+    "Name": "GPU Core",
+    "Parent": "/nvidiagpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Temperature",
+    "Value": 42
+  },
+  {
+    "Identifier": "/intelcpu/0/load/0",
+    "Index": 0,
+    "InstanceId": "3850",
+    "Max": 100,
+    "Min": 0,
+    "Name": "CPU Total",
+    "Parent": "/intelcpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Load",
+    "Value": 3.385419
+  },
+  {
+    "Identifier": "/nvidiagpu/0/load/4",
+    "Index": 4,
+    "InstanceId": "3886",
+    "Max": 6.633091,
+    "Min": 1.379395,
+    "Name": "GPU Memory",
+    "Parent": "/nvidiagpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Load",
+    "Value": 4.907179
+  },
+  {
+    "Identifier": "/ram/load/0",
+    "Index": 0,
+    "InstanceId": "3869",
+    "Max": 53.33046,
+    "Min": 18.89685,
+    "Name": "Memory",
+    "Parent": "/ram",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Load",
+    "Value": 48.32544
+  },
+  {
+    "Identifier": "/nvidiagpu/0/load/0",
+    "Index": 0,
+    "InstanceId": "3878",
+    "Max": 36,
+    "Min": 0,
+    "Name": "GPU Core",
+    "Parent": "/nvidiagpu/0",
+    "ProcessId": "f0c8b743-e108-4a45-8d5e-c9bd5314a65d",
+    "SensorType": "Load"
+  }
+]

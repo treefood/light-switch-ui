@@ -1,0 +1,44 @@
+<div (click)="appClickHandler()">
+  <div class="lights-list">
+    <mat-spinner *ngIf="loading"> </mat-spinner>
+    <ls-light
+      *ngFor="let light of roomLights"
+      [name]="light.name"
+      [on]="light.state.on"
+      [index]="light.index"
+      [brightness]="light.state.bri"
+    ></ls-light>
+  </div>
+
+  <div class="power-button-container">
+    <button
+      [ngClass]="['power-button', on ? 'power-button-on' : 'power-button-off']"
+      matRipple
+      (click)="togglePower()"
+      (dblclick)="dblClickHandler()"
+    >
+      <fa-icon [icon]="powerIcon"></fa-icon>
+    </button>
+    <button
+      mat-icon
+      button
+      class="menu-button"
+      [matMenuTriggerFor]="menu"
+      matRipple
+    >
+      <!-- <mat-icon class="button-icon">more_vert</mat-icon> -->
+      <fa-icon [icon]="menuIcon"></fa-icon>
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu" class="menu">
+    <button
+      mat-menu-item
+      *ngFor="let room of rooms"
+      routerLink="/home/{{ room.name }}"
+    >
+      <!-- <fa-icon [icon]="menuItemIcon"></fa-icon> -->
+      {{ room.name }}
+    </button>
+  </mat-menu>
+</div>
