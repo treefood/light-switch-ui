@@ -15,5 +15,8 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
   }
 }
