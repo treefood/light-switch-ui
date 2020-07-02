@@ -48,7 +48,7 @@ This Light Switch UI is designed to work in an internal network to control a Phi
           Exec=xinput set-prop 'wch.cn USB2IIC_CTP_CONTROL' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
         ```
 
-        3. This will only run when the Raspbian Desktop GUI is loaded.
+        4. This will only run when the Raspbian Desktop GUI is loaded.
 
 ## Installing the project for development, testing, and building
 1. Navigate to the root directory of the project. If you have VSCode opened at the project's root directory, you can open a terminal sessions by pressing `Ctrl + J`
