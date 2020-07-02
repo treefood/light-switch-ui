@@ -33,16 +33,20 @@ This Light Switch UI is designed to work in an internal network to control a Phi
     - Running the command is only temporary and will have to be set again when the Raspberry Pi reboots. One way to work around this is to set an autostart script.
         1. create a file in the directory: `/home/pi/.config/autostart` (you might have to create the autostart folder) with the file tag .desktop (ex: `touch-calibration.desktop`)
         2. within the file, use this template to write out the file contents (only filling in the <> without the <>):
-          > [Desktop Entry]
-          > Type=Application
-          > Name=<script name>
-          > Exec=<command to be executed on boot>
+        ```
+          [Desktop Entry]
+          Type=Application
+          Name=<script name>
+          Exec=<command to be executed on boot>
+        ```
 
         3. Here's an example:
-          > [Desktop Entry]
-          > Type=Application
-          > Name=touch-calibration
-          > Exec=xinput set-prop 'wch.cn USB2IIC_CTP_CONTROL' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+        ```
+          [Desktop Entry]
+          Type=Application
+          Name=touch-calibration
+          Exec=xinput set-prop 'wch.cn USB2IIC_CTP_CONTROL' 'Coordinate Transformation Matrix' 0 -1 1 1 0 0 0 0 1
+        ```
 
         3. This will only run when the Raspbian Desktop GUI is loaded.
 
