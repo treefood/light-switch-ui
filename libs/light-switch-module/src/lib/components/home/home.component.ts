@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   on = true;
   roomLights: HueLight[] = [];
   loading = false;
-  timerLength: Observable<number> = timer(30000);
+  timerLength: Observable<number> = timer(15000);
   timer$: Subscription;
 
   constructor(

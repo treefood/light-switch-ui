@@ -1,3 +1,9 @@
+## Todo
+- Create a settings feature to set/reset configuration
+- Create a quick control feature for all lights (e.g. double tap power button to turn on/off all lights)
+
+
+
 # LightSwitchUI
 
 This Light Switch UI is designed to work in an internal network to control a Philips Hue Bridge. It leverages the API Service that is stored within the Bridge which makes DIY projects easier to develop. The UI design of this project is designed to be displayed on a touchscreen displayed in a portrait orientation. More Specifically, it was designed on a 7 inch screen with the resolution of 1024 x 600 (rotated 90 degrees). The UI is built using Angular, uses NRWL file architecture, and made native using Electron.
@@ -71,6 +77,19 @@ This Light Switch UI is designed to work in an internal network to control a Phi
     - Go ahead and run the .exe file to see the compliled application run.
 - To build the application for the RPi's architecture, run `npm run electron-build-pi`
     - You'll find that the executable for this version of the build is named: `light-switch-ui`
+
+## UX Flow
+The application was designed with the idea that the users would have a touch panel per room. So the main screen of the UI will always be set to control whichever room was specified for the app
+
+You can use the touch panel to control a different room associated with the Hue Bridge, but after 15 seconds, the UI will switch back to what the main room was set to.
+
+### First time setup
+Because the UI was designed on a per room basis, it made more sense to create a First time setup 'Wizard' that stores the configuration rather than editing a configuration file per panel. The setup will automatically search for a bridge, ask you to authenticate the app with the bridge, then ask what room the touch panel will be stored in.
+
+### Where the data is store
+The configurations are persisted via the HTML Localstorage API. This helps for when the RPi has to reboot, it doesn't lose track of the configuration.
+
+
 
 
 
