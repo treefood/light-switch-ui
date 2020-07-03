@@ -17,7 +17,7 @@ export class LightsService {
         new BehaviorSubject<any>(this.lightsResponse)
       );
     }
-    timer(0, 30000).subscribe(interval => {
+    timer(0, 15000).subscribe(interval => {
       this.getAllLights().subscribe(x => {
         this.lightsResponse = x;
         this.lightsResponse$.next(this.lightsResponse);

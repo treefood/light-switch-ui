@@ -24,7 +24,7 @@ export class LightComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() brightness: number;
   @ViewChild(MatSlider) slider: MatSlider;
   subscription$: Subscription;
-  timer$ = timer(0, 1000);
+  timer$ = timer(0, 250);
   timerSubscription$: Subscription;
   releaseMutex = true;
 

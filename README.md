@@ -78,16 +78,25 @@ This Light Switch UI is designed to work in an internal network to control a Phi
 - To build the application for the RPi's architecture, run `npm run electron-build-pi`
     - You'll find that the executable for this version of the build is named: `light-switch-ui`
 
-## UX Flow
+## Application Behavior
 The application was designed with the idea that the users would have a touch panel per room. So the main screen of the UI will always be set to control whichever room was specified for the app
 
 You can use the touch panel to control a different room associated with the Hue Bridge, but after 15 seconds, the UI will switch back to what the main room was set to.
 
 ### First time setup
-Because the UI was designed on a per room basis, it made more sense to create a First time setup 'Wizard' that stores the configuration rather than editing a configuration file per panel. The setup will automatically search for a bridge, ask you to authenticate the app with the bridge, then ask what room the touch panel will be stored in.
+Because the UI was designed on a per room basis, it made more sense to create a First time setup 'Wizard' that stores the configuration rather than editing a configuration file per panel. The setup will automatically search for a bridge, ask you to authenticate the app with the bridge, then ask what room the touch panel will be stored in. **Once the first time setup is ran and you are on the home screen, be sure to soft reboot the RPi via a terminal running `sudo reboot` so that the configs persist correctly.**
 
 ### Where the data is store
 The configurations are persisted via the HTML Localstorage API. This helps for when the RPi has to reboot, it doesn't lose track of the configuration.
+
+### Main Screen Behavior
+The main screen will always display the lights in the room that had been selected as the main room in the first time setup. When you navigate to another room in the application, the UI will switch back to the main room after 15 seconds of inactivity.
+
+### Accomodating The Hue Bridge Limits
+The Hue Bridge Developer documentation states that you should limit the commands being sent to the bridge. They recommend that there should be no more than 10 commands sent per second for a light and no more than 1 command per second for a group/room. To accomodate for these guidelines, while changing the brightness of a bulb, the UI will only check for the updated value once every quarter second and update the brightness. Additionally, the UI only updates the light states every 15 seconds.
+
+## Tranferring Contents to your Raspberry Pi
+Use a software like Filezilla to perform an SFTP session to your RPi. Be sure that after you build the application, you compress the built files only into a single tarball. Then transfer that tarball to the Raspberry Pi. This ensures that all contents of the application are transferred correctly and also increases the speed of the transfer. Linux has a native command to extract tarballs. Use that to extract the contents. You can then navigate to the extracted content and execute the GUI by running `./light-switch-ui`
 
 
 
