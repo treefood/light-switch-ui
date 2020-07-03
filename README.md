@@ -8,6 +8,11 @@
 
 This Light Switch UI is designed to work in an internal network to control a Philips Hue Bridge. It leverages the API Service that is stored within the Bridge which makes DIY projects easier to develop. The UI design of this project is designed to be displayed on a touchscreen displayed in a portrait orientation. More Specifically, it was designed on a 7 inch screen with the resolution of 1024 x 600 (rotated 90 degrees). The UI is built using Angular, uses NRWL file architecture, and made native using Electron.
 
+The UI Color Design follows most of the general principles listed out by [material.io](https://material.io/design/color/dark-theme.html#behavior)
+
+If you'd like to build out your own color pallete for theming, you can edit the color variables `$primary`, `$accent`, `$foreground`, `$background` in
+> apps/light-switch-ui/src/styles.scss
+
 ## Development Prerequisite (for Windows)
 
 1.  Install [Nodejs and NPM](https://nodejs.org/en/download/releases/) (known to be successful to Node 12.16.3 and 6.14.4)
