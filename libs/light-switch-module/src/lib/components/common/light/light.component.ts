@@ -31,24 +31,20 @@ export class LightComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private lightsService: LightsService,
     private groupService: HueGroupService
-  ) {
-    this.subscription$ = this.lightsService
-      .subscribeToLight(this.index)
-      .subscribe(x => {
-        // console.log('light:', x);
-        let light: HueLight;
-        if (!this.index) {
-          return;
-        }
-        light = x[this.index] as HueLight;
-        this.on = light.state.on;
-        this.name = light.name;
-        this.brightness = light.state.bri;
-      });
-  }
+  ) {}
 
   ngOnInit(): void {
-    // console.log(this.name, 'has been added');
+    this.subscription$ = this.lightsService.subscribeToLights().subscribe(x => {
+      // console.log('light:', x);
+      let light: HueLight;
+      if (!this.index) {
+        return;
+      }
+      light = x[this.index] as HueLight;
+      this.on = light.state.on;
+      this.name = light.name;
+      this.brightness = light.state.bri;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -57,7 +53,9 @@ export class LightComponent implements OnInit, OnDestroy, AfterViewInit {
 
   blurSlider(): void {
     console.log('blurring slider');
-    this.slider.blur();
+    if (this.slider) {
+      this.slider.blur();
+    }
   }
 
   ngOnDestroy() {

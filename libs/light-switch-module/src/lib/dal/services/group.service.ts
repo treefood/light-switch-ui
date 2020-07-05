@@ -9,6 +9,8 @@ import { HueGroup } from '../models';
 })
 export class HueGroupService {
   room$: BehaviorSubject<HueGroup>;
+  allRooms$: BehaviorSubject<any>;
+  allRooms: any;
   room: HueGroup;
   roomIndex: number;
   token: string;
@@ -20,38 +22,57 @@ export class HueGroupService {
     if (!this.room$) {
       this.room$ = <BehaviorSubject<HueGroup>>new BehaviorSubject(this.room);
     }
+    if (!this.allRooms$) {
+      this.allRooms$ = <BehaviorSubject<any>>new BehaviorSubject(this.allRooms);
+    }
     this.timer$ = timer(0, 30000);
     this.timer$.subscribe(interval => {
       this.refreshRoom();
     });
   }
 
-  powerOn() {
-    return this.http.put<any>(
-      `http://${this.ipAddress}/api/${this.token}/groups/${this.roomIndex}/action`,
-      {
-        on: true
-      }
-    );
+  powerOn(index?: number) {
+    if (index) {
+      return this.http.put<any>(
+        `http://${this.ipAddress}/api/${this.token}/groups/${index}/action`,
+        {
+          on: true
+        }
+      );
+    } else {
+      return this.http.put<any>(
+        `http://${this.ipAddress}/api/${this.token}/groups/${this.roomIndex}/action`,
+        {
+          on: true
+        }
+      );
+    }
   }
 
-  powerOff() {
-    return this.http.put<any>(
-      `http://${this.ipAddress}/api/${this.token}/groups/${this.roomIndex}/action`,
-      {
-        on: false
-      }
-    );
+  powerOff(index?: number) {
+    if (index) {
+      return this.http.put<any>(
+        `http://${this.ipAddress}/api/${this.token}/groups/${index}/action`,
+        {
+          on: false
+        }
+      );
+    } else {
+      return this.http.put<any>(
+        `http://${this.ipAddress}/api/${this.token}/groups/${this.roomIndex}/action`,
+        {
+          on: false
+        }
+      );
+    }
   }
 
   getRoom(): Observable<HueGroup> {
     return this.room$.asObservable().pipe(filter(x => x !== undefined));
   }
 
-  getAllRooms(): Observable<HueGroup> {
-    return this.http.get<HueGroup>(
-      `http://${this.ipAddress}/api/${this.token}/groups`
-    );
+  getAllRooms(): Observable<any> {
+    return this.allRooms$.asObservable().pipe(filter(x => x !== undefined));
   }
 
   refreshStorage(): void {
@@ -64,13 +85,13 @@ export class HueGroupService {
       return;
     }
     this.http
-      .get<HueGroup>(
-        `http://${this.ipAddress}/api/${this.token}/groups/${this.roomIndex}`
-      )
+      .get<HueGroup>(`http://${this.ipAddress}/api/${this.token}/groups`)
       .subscribe(x => {
-        if (JSON.stringify(this.room) !== JSON.stringify(x)) {
-          this.room = x;
+        if (JSON.stringify(this.room) !== JSON.stringify(x[this.roomIndex])) {
+          this.room = x[this.roomIndex];
         }
+        this.allRooms = x;
+        this.allRooms$.next(this.allRooms);
         this.room$.next(this.room);
       });
   }

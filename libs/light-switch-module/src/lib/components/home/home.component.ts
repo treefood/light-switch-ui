@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   faCaretRight,
@@ -15,7 +15,7 @@ import { LightsService } from '../../dal/services/lights.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   roomName: string;
   room: HueGroup;
   rooms: HueGroup[];
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   loading = false;
   timerLength: Observable<number> = timer(15000);
   timer$: Subscription;
+  rooms$: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -99,6 +100,18 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  powerOffOtherRoom(index: number) {
+    this.groupsService.powerOff(index).subscribe(x => {
+      this.lightsService.refreshLights();
+    });
+  }
+
+  powerOnOtherRoom(index: number) {
+    this.groupsService.powerOn(index).subscribe(x => {
+      this.lightsService.refreshLights();
+    });
+  }
+
   getRoomLights() {
     this.roomLights = [];
     let light: HueLight;
@@ -106,7 +119,6 @@ export class HomeComponent implements OnInit {
       this.room.lights.map(index => {
         light = lights[index] as HueLight;
         light.index = parseInt(index, 10);
-        // console.log('adding', light.name, 'to the list');
         this.roomLights.push(lights[index]);
       });
     });
@@ -127,8 +139,8 @@ export class HomeComponent implements OnInit {
   }
 
   getAllRooms() {
-    this.rooms = [];
-    this.groupsService.getAllRooms().subscribe(rooms => {
+    this.rooms$ = this.groupsService.getAllRooms().subscribe(rooms => {
+      this.rooms = [];
       let i = 1;
       let flag = true;
       while (flag === true) {
@@ -143,7 +155,15 @@ export class HomeComponent implements OnInit {
         }
         i++;
       }
-      console.log('all rooms:', this.rooms);
     });
+  }
+
+  ngOnDestroy() {
+    if (!this.timer$.closed) {
+      this.timer$.unsubscribe();
+    }
+    if (!this.rooms$.closed) {
+      this.rooms$.unsubscribe();
+    }
   }
 }

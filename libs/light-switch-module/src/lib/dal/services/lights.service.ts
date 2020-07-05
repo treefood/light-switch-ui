@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { HueLight } from '../models';
 
 @Injectable({
@@ -44,8 +45,10 @@ export class LightsService {
     });
   }
 
-  subscribeToLight(index: number): Observable<HueLight> {
-    return this.lightsResponse$.asObservable();
+  subscribeToLights(): Observable<HueLight> {
+    return this.lightsResponse$
+      .asObservable()
+      .pipe(filter(x => x !== undefined));
   }
 
   verifyItems() {
