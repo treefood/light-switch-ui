@@ -6,7 +6,7 @@
 
 # LightSwitchUI
 
-This Light Switch UI is designed to work in an internal network to control a Philips Hue Bridge. It leverages the API Service that is stored within the Bridge which makes DIY projects easier to develop. The UI design of this project is designed to be displayed on a touchscreen displayed in a portrait orientation. More Specifically, it was designed on a 7 inch screen with the resolution of 1024 x 600 (rotated 90 degrees). The UI is built using Angular, uses NRWL file architecture, and made native using Electron.
+This Light Switch UI is designed to work in an internal network to control a Philips Hue Bridge. It leverages the API Service that is stored within the Bridge which makes DIY projects easier to develop. The UI design of this project is designed for a touchscreen viewed in portrait style. More Specifically, it was designed on a 7 inch screen with the resolution of 1024 x 600 (rotated 90 degrees). The UI is built using Angular, uses NRWL file architecture, and made native using Electron.
 
 The UI Color Design follows most of the general principles listed out by [material.io](https://material.io/design/color/dark-theme.html#behavior)
 
@@ -82,6 +82,7 @@ If you'd like to build out your own color pallete for theming, you can edit the 
     - Go ahead and run the .exe file to see the compliled application run.
 - To build the application for the RPi's architecture, run `npm run electron-build-pi`
     - You'll find that the executable for this version of the build is named: `light-switch-ui`
+    - **Be sure that when the build completes and the contents have been transferred to the pi, that the file `light-switch-ui` has all permissions (chmod 777)**
 
 ## Application Behavior
 The application was designed with the idea that the users would have a touch panel per room. So the main screen of the UI will always be set to control whichever room was specified for the app
@@ -101,7 +102,9 @@ The main screen will always display the lights in the room that had been selecte
 The Hue Bridge Developer documentation states that you should limit the commands being sent to the bridge. They recommend that there should be no more than 10 commands sent per second for a light and no more than 1 command per second for a group/room. To accomodate for these guidelines, while changing the brightness of a bulb, the UI will only check for the updated value once every quarter second and update the brightness. Additionally, the UI only updates the light states every 15 seconds.
 
 ## Tranferring Contents to your Raspberry Pi
-Use a software like Filezilla to perform an SFTP session to your RPi. Be sure that after you build the application, you compress the built files only into a single tarball. Then transfer that tarball to the Raspberry Pi. This ensures that all contents of the application are transferred correctly and also increases the speed of the transfer. Linux has a native command to extract tarballs. Use that to extract the contents. You can then navigate to the extracted content and execute the GUI by running `./light-switch-ui`
+Use a software like Filezilla to perform an SFTP session to your RPi. Be sure that after you build the application, you compress the built files only into a single tarball. Then transfer that tarball to the Raspberry Pi. This ensures that all contents of the application are transferred correctly and also increases the speed of the transfer. Linux has a native command to extract tarballs. Use that to extract the contents. You can then navigate to the extracted content and execute the GUI by running `./light-switch-ui` 
+> Be sure to grant all permissions to the application's executable (light-switch-ui). ex: chmod 777 light-switch-ui
+That will enable the application to open on startup.
 
 
 
