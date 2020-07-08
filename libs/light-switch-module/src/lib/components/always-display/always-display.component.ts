@@ -22,7 +22,7 @@ export class AlwaysDisplayComponent implements OnInit, OnDestroy {
         date.getMinutes() < 10
           ? '0' + date.getMinutes().toString()
           : date.getMinutes().toString();
-      this.period = this.hour < 12 ? 'AM' : 'PM';
+      this.period = date.getHours() < 12 ? 'AM' : 'PM';
     });
   }
 
