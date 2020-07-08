@@ -1,3 +1,7 @@
+:host {
+  height: 100%;
+  display: block;
+}
 .power-button {
   background-color: transparent;
   border: 6px solid;
@@ -11,6 +15,14 @@
   fa-icon {
     font-size: 70px;
   }
+}
+
+.home-container {
+  height: 100%;
+}
+
+.idle-view {
+  height: 100%;
 }
 
 .power-button-container {

@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   timerLength: Observable<number> = timer(15000);
   timer$: Subscription;
   rooms$: Subscription;
+  idle = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -125,13 +126,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   appClickHandler() {
+    this.idle = false;
     if (this.timer$) {
       this.timer$.unsubscribe();
     }
 
-    this.timer$ = this.timerLength.subscribe(x => {
-      this.router.navigate(['home/main']);
-    });
+    if (this.roomName !== localStorage.getItem('main_room')) {
+      this.timer$ = this.timerLength.subscribe(x => {
+        this.router.navigate(['home/main']);
+        this.idle = true;
+      });
+    } else {
+      this.timer$ = this.timerLength.subscribe(x => {
+        this.idle = true;
+      });
+    }
   }
 
   dblClickHandler() {

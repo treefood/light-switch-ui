@@ -1,0 +1,10 @@
+@mixin always-display-component-theme(
+  $primary,
+  $accent,
+  $background,
+  $foreground
+) {
+  .always-display-container {
+    color: transparentize($foreground, 0.13);
+  }
+}

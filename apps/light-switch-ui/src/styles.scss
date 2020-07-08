@@ -5,6 +5,7 @@
 @import '~@angular/material/theming';
 @import '~@treefood-nx-angular/light-switch-module/src/lib/components/home/home.component.theme.scss';
 @import '~@treefood-nx-angular/light-switch-module/src/lib/components/common/light/light.component.theme.scss';
+@import '~@treefood-nx-angular/light-switch-module/src/lib/components/always-display/always-display.component.theme.scss';
 
 $primary: #2196f3;
 $accent: #f37f21;
@@ -19,6 +20,12 @@ $foreground: white;
 @include mat-core();
 @include home-component-theme($primary, $accent, $background, $foreground);
 @include light-component-theme($primary, $accent, $background, $foreground);
+@include always-display-component-theme(
+  $primary,
+  $accent,
+  $background,
+  $foreground
+);
 body {
   height: calc(100vh);
   width: calc(100vw);

@@ -1,5 +1,5 @@
-<div (click)="appClickHandler()">
-  <div class="lights-list">
+<div (click)="appClickHandler()" class="home-container">
+  <div class="lights-list" *ngIf="!idle">
     <mat-spinner *ngIf="loading"> </mat-spinner>
     <ls-light
       *ngFor="let light of roomLights"
@@ -8,6 +8,9 @@
       [index]="light.index"
       [brightness]="light.state.bri"
     ></ls-light>
+  </div>
+  <div class="idle-view" *ngIf="idle">
+    <ls-always-display></ls-always-display>
   </div>
 
   <div class="power-button-container">

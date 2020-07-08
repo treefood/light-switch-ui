@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AlwaysDisplayModule } from '../always-display/always-display.module';
 import { LightModule } from '../common/light/light.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -25,7 +26,8 @@ import { HomeComponent } from './home.component';
     MatMenuModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    FormsModule
+    FormsModule,
+    AlwaysDisplayModule
   ]
 })
 export class HomeModule {}

@@ -1,0 +1,16 @@
+.always-display-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .time {
+    font-size: 100px;
+    .numerics {
+    }
+    .period {
+      font-size: 50px;
+      margin-left: 10px;
+    }
+  }
+}
