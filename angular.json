@@ -39,6 +39,11 @@
                   "with": "apps/light-switch-ui/src/environments/environment.prod.ts"
                 }
               ],
+              "styles": [
+                "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+                "apps/light-switch-ui/src/styles.scss",
+                "apps/light-switch-ui/src/styles/touchscreen/cursor.touch-screen.scss"
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

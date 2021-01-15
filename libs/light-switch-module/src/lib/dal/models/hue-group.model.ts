@@ -1,6 +1,7 @@
 import { ColorMode } from './hue-common.model';
 
 export interface HueGroup {
+  id: string;
   name: string;
   type: GroupType;
   lights: string[];

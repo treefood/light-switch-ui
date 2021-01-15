@@ -27,9 +27,10 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
-    "electron": "ng build --base-href ./ && electron .",
-    "electron-build": "ng build --base-href ./ && electron-packager . --overwrite",
-    "electron-build-pi": "ng build --base-href ./ && electron-packager . --platform=linux --arch=armv7l --overwrite"
+    "electron": "ng build --base-href ./ --prod && electron .",
+    "electron-build": "ng build --base-href ./  --prod && electron-packager . --overwrite",
+    "electron-build-pi": "ng build --base-href ./ --prod && electron-packager . --platform=linux --arch=armv7l --overwrite --ignore=^light-switch-ui-linux-armv7l.tar",
+    "pi-upload": "npm run electron-build-pi && bash ./tools/pi-upload.sh"
   },
   "private": true,
   "dependencies": {
@@ -55,7 +56,7 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.901.0",
+    "@angular-devkit/build-angular": "^0.1000.7",
     "@angular-devkit/build-ng-packagr": "~0.901.5",
     "@angular/cli": "9.1.0",
     "@angular/compiler-cli": "^9.1.0",
@@ -68,8 +69,8 @@
     "codelyzer": "~5.0.1",
     "cypress": "^4.1.0",
     "dotenv": "6.2.0",
-    "electron-packager": "^14.2.1",
     "electron": "^9.0.0",
+    "electron-packager": "^14.2.1",
     "eslint": "6.8.0",
     "jest": "25.2.3",
     "jest-preset-angular": "8.1.2",

@@ -30,4 +30,12 @@
       color: transparentize($color: $foreground, $amount: 0.65);
     }
   }
+
+  .mat-menu-panel {
+    background-color: mix($background, $foreground, 95%);
+    color: transparentize($color: $foreground, $amount: 0.13);
+    .mat-menu-item {
+      color: transparentize($color: $foreground, $amount: 0.13);
+    }
+  }
 }

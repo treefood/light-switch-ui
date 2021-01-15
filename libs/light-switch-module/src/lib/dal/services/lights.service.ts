@@ -27,7 +27,7 @@ export class LightsService {
   }
 
   getAllLights() {
-    this.verifyItems();
+    this.refreshStorage();
     return this.http.get<any>(
       `http://${this.ipAddress}/api/${this.token}/lights`
     );
@@ -46,16 +46,17 @@ export class LightsService {
   }
 
   subscribeToLights(): Observable<HueLight> {
+    this.verifyItems();
     return this.lightsResponse$
       .asObservable()
       .pipe(filter(x => x !== undefined));
   }
 
   verifyItems() {
-    if (!this.ipAddress) {
+    if (!this.ipAddress || this.ipAddress === 'null') {
       this.ipAddress = localStorage.getItem('ip_address');
     }
-    if (!this.token) {
+    if (!this.token || this.token === 'null') {
       this.token = localStorage.getItem('token');
     }
   }

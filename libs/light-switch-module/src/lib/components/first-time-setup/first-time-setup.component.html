@@ -2,7 +2,7 @@
   <mat-card-title>First Time Setup</mat-card-title>
   <mat-card-content>
     Let's run through the setup process
-    <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-vertical-stepper [linear]="true" #stepper>
       <mat-step [completed]="selectedBridge ? true : false">
         <ng-template matStepLabel>Select your Phillips Hue Bridge</ng-template>
         <h4>Select your Phillips Hue Bridge</h4>
@@ -118,7 +118,7 @@
         </div>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Select the main room</ng-template>
+        <ng-template matStepLabel>Select the Main Room</ng-template>
         <h4>Select the main room</h4>
         <p>Which room will this switch be located in?</p>
         <mat-form-field>
@@ -161,6 +161,6 @@
           <button mat-stroked-button (click)="save()">Save</button>
         </div>
       </mat-step>
-    </mat-horizontal-stepper>
+    </mat-vertical-stepper>
   </mat-card-content>
 </mat-card>

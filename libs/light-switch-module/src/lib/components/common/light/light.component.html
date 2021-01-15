@@ -1,8 +1,17 @@
-<mat-card [ngClass]="[on ? 'on' : 'off', !releaseMutex ? 'changing' : '']">
-  <mat-card-content>
+<mat-card
+  [ngClass]="[on ? 'on' : 'off', !releaseMutex ? 'changing' : '']"
+  matRipple
+>
+  <mat-card-content class="last-child">
     <div class="top-row" (click)="togglePower()">
       <span class="light-name">{{ name }}</span>
-      <span spacer></span>
+      <span spacer>
+        <span
+          class="color-bar"
+          *ngIf="on && type.includes('color')"
+          [ngStyle]="{ 'background-color': color }"
+        ></span>
+      </span>
       <span class="toggle-container"
         ><mat-slide-toggle [checked]="on" disabled="true"></mat-slide-toggle
       ></span>
@@ -10,7 +19,7 @@
     <div class="bottom-row">
       <div class="empty-filler" *ngIf="!on" (click)="togglePower()"></div>
       <mat-slider
-        *ngIf="on"
+        *ngIf="on && brightness !== undefined"
         min="1"
         max="254"
         step="5"

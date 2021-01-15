@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faHandPointRight } from '@fortawesome/free-solid-svg-icons';
+import { Subscription, timer } from 'rxjs';
 import { GroupType, HueDiscovery, HueError, HueGroup } from '../../dal/models';
 import { HueDiscoveryService } from '../../dal/services';
 
@@ -11,7 +12,7 @@ import { HueDiscoveryService } from '../../dal/services';
   templateUrl: './first-time-setup.component.html',
   styleUrls: ['./first-time-setup.component.scss']
 })
-export class FirstTimeSetupComponent implements OnInit {
+export class FirstTimeSetupComponent implements OnInit, OnDestroy {
   discoveredBridges: HueDiscovery[];
   selectedBridge: HueDiscovery;
   handIcon = faHandPointRight;
@@ -22,6 +23,7 @@ export class FirstTimeSetupComponent implements OnInit {
   groups: string[];
   selectedGroup: string;
   bridgeName: string;
+  storageObserver: Subscription;
 
   constructor(
     private discoverer: HueDiscoveryService,
@@ -43,6 +45,24 @@ export class FirstTimeSetupComponent implements OnInit {
       this.selectedBridge = bridges[0];
       this.getBridgeName();
     });
+    this.storageObserver = timer(0, 2000).subscribe(x => {
+      console.log('checking storage');
+      this.checkStorage();
+    });
+  }
+
+  checkStorage(): void {
+    let redirectNeeded = true;
+    const checkValues = ['main_room', 'token', 'ip_address'];
+    checkValues.map(key => {
+      if (!localStorage.getItem(key) || localStorage.getItem(key) === 'null') {
+        redirectNeeded = false;
+        console.log('did not find a value for', key);
+      }
+    });
+    if (redirectNeeded) {
+      this.router.navigate(['home/main']);
+    }
   }
 
   verifyAuthentication() {
@@ -100,5 +120,11 @@ export class FirstTimeSetupComponent implements OnInit {
     localStorage.setItem('ip_address', this.selectedBridge.internalipaddress);
     localStorage.setItem('main_room', this.selectedGroup);
     this.router.navigate(['home/main']);
+  }
+
+  ngOnDestroy() {
+    if (this.storageObserver && !this.storageObserver.closed) {
+      this.storageObserver.unsubscribe();
+    }
   }
 }

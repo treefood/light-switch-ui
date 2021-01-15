@@ -92,7 +92,7 @@ You can use the touch panel to control a different room associated with the Hue 
 ### First time setup
 Because the UI was designed on a per room basis, it made more sense to create a First time setup 'Wizard' that stores the configuration rather than editing a configuration file per panel. The setup will automatically search for a bridge, ask you to authenticate the app with the bridge, then ask what room the touch panel will be stored in. **Once the first time setup is ran and you are on the home screen, be sure to soft reboot the RPi via a terminal running `sudo reboot` so that the configs persist correctly.** This only has to be done if the configs change at all
 
-### Where the data is store
+### Where the data is stored
 The configurations are persisted via the HTML Localstorage API. This helps for when the RPi has to reboot, it doesn't lose track of the configuration.
 
 ### Main Screen Behavior

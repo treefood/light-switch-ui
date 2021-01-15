@@ -7,6 +7,10 @@
       [on]="light.state.on"
       [index]="light.index"
       [brightness]="light.state.bri"
+      [saturation]="light.state.sat"
+      [hue]="light.state.hue"
+      [type]="light.type"
+      [xy]="light.state.xy"
     ></ls-light>
   </div>
   <div class="idle-view" *ngIf="idle">
@@ -27,6 +31,7 @@
       button
       class="menu-button"
       [matMenuTriggerFor]="menu"
+      #roomMenuTrigger="matMenuTrigger"
       matRipple
     >
       <!-- <mat-icon class="button-icon">more_vert</mat-icon> -->
@@ -35,6 +40,7 @@
   </div>
 
   <mat-menu #menu="matMenu" class="menu">
+    <mat-spinner *ngIf="roomsLoading"> </mat-spinner>
     <div mat-menu-item *ngFor="let room of rooms; index as i">
       <span routerLink="/home/{{ room.name }}" class="menu-item-room-name">
         {{ room.name }}
@@ -44,8 +50,8 @@
           [(ngModel)]="room.state.any_on"
           (click)="
             room.state.any_on
-              ? powerOffOtherRoom(i + 1)
-              : powerOnOtherRoom(i + 1)
+              ? powerOffOtherRoom(room.id)
+              : powerOnOtherRoom(room.id)
           "
         ></mat-slide-toggle>
       </span>

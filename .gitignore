@@ -38,6 +38,10 @@ testem.log
 /treefood-nx-angular-win32-x64
 /light-switch-ui-linux-armv7l
 /light-switch-ui-win32-x64
+config.json
 # System Files
 .DS_Store
 Thumbs.db
+light-switch
+light-switch-ui-linux-armv7l.tar
+light-switch.pub

@@ -35,7 +35,6 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   color: transparentize($foreground, 0.13);
-  cursor: none; //remove when in dev
 }
 
 [emphasis-text] {
